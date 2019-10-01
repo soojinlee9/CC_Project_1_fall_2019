@@ -5,3 +5,9 @@ function setup() {
 function draw() {
   // put drawing code here
 }
+
+function newbie(){
+	if(mousePressed){
+		console.log("hello");
+	}
+}
