@@ -1,13 +1,25 @@
 function setup() {
-  // put setup code here
+  createCanvas(400, 400);
 }
 
 function draw() {
-  // put drawing code here
+  background(220);
+  
+  line(180,170,170,220);
+  line(220,170,230,220);
+  
+ 
+  line(230,220,250,220);
+  
+  tap();
+  
 }
 
-function newbie(){
-	if(mousePressed){
-		console.log("hello");
-	}
+function tap() {
+let i = second();
+    if (i % 2  == 0) {
+      line(152, 210, 170, 220);
+    } else {
+      line(170, 220, 150, 220);
+    }
 }
