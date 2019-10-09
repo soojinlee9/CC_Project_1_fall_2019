@@ -1,4 +1,5 @@
 let taps = [];
+let lights = [];
 
 function setup() {
   createCanvas(400, 400);
@@ -10,6 +11,7 @@ function setup() {
   skip3 = new Skip(300,280);
   skip4 = new Skip(60,280);
   skip5 = new Skip(300,60);
+  lightning1 = new Lightning(100,100);
   frameRate(20);
 }
 
@@ -53,7 +55,7 @@ function draw() {
       }
       break;
       
-    case (s>11000 && s<13000):
+    case (s>=11000 && s<13000):
       changingBcgnd(220,250);
       quadrants(120);
       fill(220,255);
@@ -72,27 +74,39 @@ function draw() {
       }
       break;
       
-    case (s>13000 && s<16000):
-      clrBcgrnd(200,250)
+    case (s>=13000 && s<15000):
+      clrLitng();
+      for (let i=0; i<20; i++){
+        x = random(200) *2;
+        y = random(200) *2;
+        lights[i] = new Lightning(x,y);
+        lights[i].display();
+      }
+      break;
+      
+    case (s>=15000 && s<18000):
+      clrBcgrnd(200,250);
+      strokeWeight(1);
+      stroke(0);
       skip1.display();
       break;
       
-    case (s>16000 && s<18000):
-      clrBcgrnd(150,250)
+    case (s>=18000 && s<20000):
+      clrBcgrnd(150,250);
       skip1.display();
       skip2.display();
       skip3.display();
       break;
       
-    case (s>18000 && s<20000):
-      clrBcgrnd(10,250)
+    case (s>=20000 && s<22000):
+      clrBcgrnd(10,250);
       skip1.display();
       skip4.display();
       skip5.display();
       break;
       
-    case (s>20000 && s<23000):
-      clrBcgrnd(0,250)
+    case (s>=22000 && s<25000):
+      clrBcgrnd(0,250);
       skip1.display();
       skip2.display();
       skip3.display();
@@ -171,4 +185,30 @@ function thoughtBubble(x_min,x_mx,y_min,y_mx){
   let diam = random(s/100);
   noStroke();
   ellipse(x,y,diam, diam);
+}
+
+class Lightning {
+  constructor(start_x,start_y){
+    this.xs = start_x;
+    this.ys = start_y;
+  }
+  
+  display(){
+    line(this.xs,this.ys,this.xs-20,this.ys+40);
+    line(this.xs-20,this.ys+40,this.xs,this.ys+40);
+    line(this.xs,this.ys+40,this.xs-20,this.ys+80);
+    line(this.xs-20,this.ys+80,this.xs+20,this.ys+30);
+    line(this.xs+20,this.ys+30,this.xs,this.ys+30);
+    line(this.xs,this.ys+30,this.xs+20,this.ys);
+    line(this.xs+20,this.ys,this.xs,this.ys);
+  }
+               
+}
+
+function clrLitng(){
+  let r = random(200,255);
+  let g = random(190,255);
+  let b = random(205,255);
+  strokeWeight(3);
+  stroke(r,g,b);
 }
