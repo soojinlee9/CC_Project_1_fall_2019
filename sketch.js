@@ -18,44 +18,62 @@ function draw() {
   
   switch(true) {
     case (s>=0 && s<3000):
-      quadrants(40); 
+      changingBcgnd(100,130);
+      quadrants(40);
+      fill(220,50);
+      stroke(0);
       tap1.display();
       break;
 
     case (s>=3000 && s<6000):
+      changingBcgnd(130,160);
       quadrants(60);
+      fill(220,100);
+      stroke(0);
       tap2.display();
       break;
     
     case (s>=6000 && s<8000):
+      changingBcgnd(160,190);
       quadrants(80);
+      fill(220,150);
+      stroke(0);
       tap3.display();
       break;
       
     case (s>=8000 && s<11000):
+      changingBcgnd(190,220);
       quadrants(100);
+      fill(220,200);
+      stroke(0);
       tap1.display();
       tap2.display();
       tap3.display();
       break;
       
     case (s>11000 && s<13000):
+      changingBcgnd(220,250);
       quadrants(120);
+      fill(220,255);
+      stroke(0);
       three(60);
       three(280);
       break;
       
     case (s>13000 && s<16000):
+      clrBcgrnd(200,250)
       skip1.display();
       break;
       
     case (s>16000 && s<18000):
+      clrBcgrnd(150,250)
       skip1.display();
       skip2.display();
       skip3.display();
       break;
       
     case (s>18000 && s<20000):
+      clrBcgrnd(10,250)
       skip1.display();
       skip4.display();
       skip5.display();
@@ -64,6 +82,10 @@ function draw() {
     
 
   }
+}
+
+function changingBcgnd(light,dark){
+  background(random(light,dark));
 }
 
 class Tap {
@@ -95,6 +117,10 @@ function three(newY) {
   tap3.display();
 }
 
+function clrBcgrnd(clr1, clr2){
+  background(random(clr1,clr2), 255, random(clr1,clr2));
+}
+
 class Skip {
   constructor(x_,y_){
     this.x = x_;
@@ -118,6 +144,7 @@ class Skip {
   }
 }
 
+
 function quadrants(max){
   thoughtBubble(0,max,0,max);
   thoughtBubble(width-max,width,0,max);
@@ -130,6 +157,6 @@ function thoughtBubble(x_min,x_mx,y_min,y_mx){
   let x = random(x_min,x_mx);
   let y = random(y_min,y_mx);
   let diam = random(s/100);
+  noStroke();
   ellipse(x,y,diam, diam);
 }
-
