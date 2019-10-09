@@ -1,4 +1,4 @@
-let taps = [];
+let taps = []; //
 let lights = [];
 
 function setup() {
@@ -12,7 +12,7 @@ function setup() {
   skip4 = new Skip(60,280);
   skip5 = new Skip(300,60);
   lightning1 = new Lightning(100,100);
-	jump1 = new Jump(130,150);
+  jump1 = new Jump(130,150);
   frameRate(20);
 }
 
@@ -115,10 +115,10 @@ function draw() {
       skip5.display();
       break;
 			
-		case (s>=25000 && s<28000):
-			clrBcgrnd(240,255,0,200);
-			jump1.display();
-			break;
+	case (s>=25000 && s<28000):
+		clrBcgrnd(240,255,0,200);
+		jump1.display();
+		break;
   }
 }
 
