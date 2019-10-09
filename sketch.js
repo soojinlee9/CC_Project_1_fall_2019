@@ -18,44 +18,29 @@ function draw() {
   
   switch(true) {
     case (s>=0 && s<3000):
-      thoughtBubble(0,40,0,40);
-      thoughtBubble(width-40,width,0,40);
-      thoughtBubble(0,40,height-40,height);
-      thoughtBubble(width-40,width,height-40,height); 
+      quadrants(40); 
       tap1.display();
       break;
 
     case (s>=3000 && s<6000):
-      thoughtBubble(0,60,0,60);
-      thoughtBubble(width-60,width,0,60);
-      thoughtBubble(0,60,height-60,height);
-      thoughtBubble(width-60,width,height-60,height);
+      quadrants(60);
       tap2.display();
       break;
     
     case (s>=6000 && s<8000):
-      thoughtBubble(0,80,0,80);
-      thoughtBubble(width-80,width,0,80);
-      thoughtBubble(0,80,height-80,height);
-      thoughtBubble(width-80,width,height-80,height);
+      quadrants(80);
       tap3.display();
       break;
       
     case (s>=8000 && s<11000):
-      thoughtBubble(0,100,0,100);
-      thoughtBubble(width-100,width,0,100);
-      thoughtBubble(0,100,height-100,height);
-      thoughtBubble(width-100,width,height-100,height);
+      quadrants(100);
       tap1.display();
       tap2.display();
       tap3.display();
       break;
       
     case (s>11000 && s<13000):
-      thoughtBubble(0,120,0,120);
-      thoughtBubble(width-120,width,0,120);
-      thoughtBubble(0,120,height-120,height);
-      thoughtBubble(width-120,width,height-120,height);
+      quadrants(120);
       three(60);
       three(280);
       break;
@@ -133,6 +118,13 @@ class Skip {
   }
 }
 
+function quadrants(max){
+  thoughtBubble(0,max,0,max);
+  thoughtBubble(width-max,width,0,max);
+  thoughtBubble(0,max,height-max,height);
+  thoughtBubble(width-max,width,height-max,height);
+}
+
 function thoughtBubble(x_min,x_mx,y_min,y_mx){
   let s = millis();
   let x = random(x_min,x_mx);
@@ -140,10 +132,4 @@ function thoughtBubble(x_min,x_mx,y_min,y_mx){
   let diam = random(s/100);
   ellipse(x,y,diam, diam);
 }
-
-
-
-
-
-
 
