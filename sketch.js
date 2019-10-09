@@ -1,8 +1,10 @@
+let taps = [];
+
 function setup() {
   createCanvas(400, 400);
-  tap1 = new Tap(180,170);
-  tap2 = new Tap(60,170);
-  tap3 = new Tap(300,170);
+  taps[0] = new Tap(180,170);
+  taps[1] = new Tap(60,170);
+  taps[2] = new Tap(300,170);
   skip1 = new Skip(180,170);
   skip2 = new Skip(60,60);
   skip3 = new Skip(300,280);
@@ -22,7 +24,7 @@ function draw() {
       quadrants(40);
       fill(220,50);
       stroke(0);
-      tap1.display();
+      taps[0].display();
       break;
 
     case (s>=3000 && s<6000):
@@ -30,7 +32,7 @@ function draw() {
       quadrants(60);
       fill(220,100);
       stroke(0);
-      tap2.display();
+      taps[1].display();
       break;
     
     case (s>=6000 && s<8000):
@@ -38,7 +40,7 @@ function draw() {
       quadrants(80);
       fill(220,150);
       stroke(0);
-      tap3.display();
+      taps[2].display();
       break;
       
     case (s>=8000 && s<11000):
@@ -46,9 +48,9 @@ function draw() {
       quadrants(100);
       fill(220,200);
       stroke(0);
-      tap1.display();
-      tap2.display();
-      tap3.display();
+      for (let i=0; i<3;i++){
+        taps[i].display();
+      }
       break;
       
     case (s>11000 && s<13000):
@@ -56,8 +58,18 @@ function draw() {
       quadrants(120);
       fill(220,255);
       stroke(0);
-      three(60);
-      three(280);
+      for (let i=0; i<3;i++){
+        let x = 60 + 120 * i;
+        let y = 60;
+        taps[i] = new Tap(x,y);
+        taps[i].display();
+      }
+      for (let i=0; i<3;i++){
+        let x = 60 + 120 * i;
+        let y = 280;
+        taps[i] = new Tap(x,y);
+        taps[i].display();
+      }
       break;
       
     case (s>13000 && s<16000):
@@ -75,6 +87,15 @@ function draw() {
     case (s>18000 && s<20000):
       clrBcgrnd(10,250)
       skip1.display();
+      skip4.display();
+      skip5.display();
+      break;
+      
+    case (s>20000 && s<23000):
+      clrBcgrnd(0,250)
+      skip1.display();
+      skip2.display();
+      skip3.display();
       skip4.display();
       skip5.display();
       break;
@@ -106,15 +127,6 @@ class Tap {
       line(this.x-10, this.y+50, this.x-30, this.y+50);
     }
   }
-}
-
-function three(newY) {
-  tap1 = new Tap(180,newY);
-  tap2 = new Tap(60,newY);
-  tap3 = new Tap(300,newY);
-  tap1.display();
-  tap2.display();
-  tap3.display();
 }
 
 function clrBcgrnd(clr1, clr2){
