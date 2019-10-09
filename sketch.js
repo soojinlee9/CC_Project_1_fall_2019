@@ -12,11 +12,12 @@ function setup() {
   skip4 = new Skip(60,280);
   skip5 = new Skip(300,60);
   lightning1 = new Lightning(100,100);
+	jump1 = new Jump(130,150);
   frameRate(20);
 }
 
 function draw() {
-  background(220);
+  background(120);
   
  let s = millis();
   
@@ -85,37 +86,39 @@ function draw() {
       break;
       
     case (s>=15000 && s<18000):
-      clrBcgrnd(200,250);
+      clrBcgrnd(200,250,200,250);
       strokeWeight(1);
       stroke(0);
       skip1.display();
       break;
       
     case (s>=18000 && s<20000):
-      clrBcgrnd(150,250);
+      clrBcgrnd(150,250,150,250);
       skip1.display();
       skip2.display();
       skip3.display();
       break;
       
     case (s>=20000 && s<22000):
-      clrBcgrnd(10,250);
+      clrBcgrnd(10,250,10,250);
       skip1.display();
       skip4.display();
       skip5.display();
       break;
       
     case (s>=22000 && s<25000):
-      clrBcgrnd(0,250);
+      clrBcgrnd(0,250,0,250);
       skip1.display();
       skip2.display();
       skip3.display();
       skip4.display();
       skip5.display();
       break;
-      
-    
-
+			
+		case (s>=25000 && s<28000):
+			clrBcgrnd(240,255,0,200);
+			jump1.display();
+			break;
   }
 }
 
@@ -143,8 +146,8 @@ class Tap {
   }
 }
 
-function clrBcgrnd(clr1, clr2){
-  background(random(clr1,clr2), 255, random(clr1,clr2));
+function clrBcgrnd(rclr1, rclr2, bclr1, bclr2){
+  background(random(rclr1,rclr2), 255, random(bclr1,bclr2));
 }
 
 class Skip {
@@ -201,8 +204,7 @@ class Lightning {
     line(this.xs+20,this.ys+30,this.xs,this.ys+30);
     line(this.xs,this.ys+30,this.xs+20,this.ys);
     line(this.xs+20,this.ys,this.xs,this.ys);
-  }
-               
+  }             
 }
 
 function clrLitng(){
@@ -211,4 +213,28 @@ function clrLitng(){
   let b = random(205,255);
   strokeWeight(3);
   stroke(r,g,b);
+}
+
+class Jump {
+  constructor(x_,y_) {
+    this.x = x_;
+    this.y = y_;
+  }
+  
+  display(){
+
+    line(this.x,this.y,this.x+40,this.y+50);
+    line(this.x+140,this.y,this.x+100,this.y+50);
+  
+    let i = second();
+    if (i % 2  == 0) {
+      line(this.x+40,this.y+70,this.x+10,this.y+90);
+      line(this.x+10,this.y+90,this.x+40,this.y+100);
+      line(this.x+100,this.y+70,this.x+130,this.y+90);
+      line(this.x+130,this.y+90,this.x+100,this.y+100);
+    } else {
+      line(this.x+40,this.y+70,this.x,this.y+120);
+      line(this.x+100,this.y+70,this.x+140,this.y+120);
+    }
+  }
 }
