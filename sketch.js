@@ -3,16 +3,16 @@ let lights = []; //array called lights
 
 function setup() {
   createCanvas(400, 400); //size of sketch
-  taps[0] = new Tap(180,170); //first index of taps array is new Tap object
-  taps[1] = new Tap(60,170); //second index of taps array is new Tap object
-  taps[2] = new Tap(300,170); //third index of taps array is new Tap object
-  skip1 = new Skip(180,170); //new Skip object with parameters
+  taps[0] = new Tap(180,170); //first index of taps array is new tap object
+  taps[1] = new Tap(60,170); //second index of taps array is new tap object
+  taps[2] = new Tap(300,170); //third index of taps array is new tap object
+  skip1 = new Skip(180,170); //new skip object with parameters
   skip2 = new Skip(60,60);
   skip3 = new Skip(300,280);
   skip4 = new Skip(60,280);
   skip5 = new Skip(300,60);
-  lightning1 = new Lightning(100,100); //new Lightning object with parameters
-  jump1 = new Jump(130,150); //new Jump object
+  lightning1 = new Lightning(100,100); //new lightning object with parameters
+  jump1 = new Jump(130,150); //new jump object
   frameRate(20); // slows down rate 
 }
 
@@ -27,7 +27,7 @@ function draw() {
       quadrants(40); //thought bubbles in all four corners with the limit of x and y being 40
       fill(220,50); //thought bubbles color almost white with opacity, opactiy increases as time goes by
       stroke(0); //black stroke
-      taps[0].display(); //displays Tap object in the first index of the taps array
+      taps[0].display(); //displays tap object in the first index of the taps array
       break; //ends case
 
     case (s>=3000 && s<6000): //this case if time is between 3 and 6 sec
@@ -35,7 +35,7 @@ function draw() {
       quadrants(60);
       fill(220,100);
       stroke(0);
-      taps[1].display(); //displays Tap object in the second index of taps array
+      taps[1].display(); //displays tap object in the second index of taps array
       break;
     
     case (s>=6000 && s<8000): //time between 6 and 8 sec
@@ -43,7 +43,7 @@ function draw() {
       quadrants(80);
       fill(220,150);
       stroke(0);
-      taps[2].display(); //displays Tap object in the third index of taps array
+      taps[2].display(); //displays tap object in the third index of taps array
       break;
       
     case (s>=8000 && s<11000): //time between 8 and 11 sec
@@ -51,7 +51,7 @@ function draw() {
       quadrants(100);
       fill(220,200);
       stroke(0);
-      for (let i=0; i<3;i++){ //displays all three Tap objects
+      for (let i=0; i<3;i++){ //displays all three tap objects
         taps[i].display();
       }
       break;
@@ -61,13 +61,13 @@ function draw() {
       quadrants(120);
       fill(220,255);
       stroke(0);
-      for (let i=0; i<3;i++){ //row of three Tap objects 
+      for (let i=0; i<3;i++){ //row of three tap objects 
         let x = 60 + 120 * i; // initializes x and y position values
         let y = 60;
         taps[i] = new Tap(x,y); // creates new array of objects
         taps[i].display(); //displays this array
       }
-      for (let i=0; i<3;i++){ //another row of three Tap objects
+      for (let i=0; i<3;i++){ //another row of three tap objects
         let x = 60 + 120 * i; 
         let y = 280; 			// increases the y value so that this row is below the other row
         taps[i] = new Tap(x,y); //creates new array of objects
@@ -77,11 +77,11 @@ function draw() {
       
     case (s>=13000 && s<15000): //time between 13 and 15 sec
       clrLitng(); //function to color the lightning bolts a random color
-      for (let i=0; i<20; i++){ //makes 19 lightning bolts in total
-        x = random(200) *2; //so that random can take any values within the width and height of sketch
+      for (let i=0; i<20; i++){ //makes 20 lightning bolts in total
+        x = random(200) *2; //random values within the width and height of sketch
         y = random(200) *2;
         lights[i] = new Lightning(x,y); //makes array of objects and puts in values as it loops
-        lights[i].display(); //displays the whole array of Lightning objects
+        lights[i].display(); //displays the whole array of lightning objects
       }
       break;
       
@@ -101,7 +101,7 @@ function draw() {
       
     case (s>=20000 && s<22000): //time between 20 and 22 sec
       clrBcgrnd(10,250,10,250);
-      skip1.display(); //displays 3 skip objecys, right to left diagonal
+      skip1.display(); //displays 3 skip objects, right to left diagonal
       skip4.display();
       skip5.display();
       break;
@@ -122,7 +122,7 @@ function draw() {
   }
 }
 
-function changingBcgnd(light,dark){ //wanted this function for gray colors
+function changingBcgnd(light,dark){ //wanted this function for backgrounds of gray colors
   background(random(light,dark)); //random background color between the parameters light and dark
 }
 
@@ -138,7 +138,7 @@ class Tap {
     line(this.x+50,this.y+50,this.x+70,this.y+50); //right foot
     
     let i = second(); // i is a variable for the second function that counts time in sec
-    if (i % 2  == 0) {  //if the time in sec is even (therefore just changes every second )
+    if (i % 2  == 0) {  //if the time in sec is even (therefore changes every second )
       line(this.x-28, this.y+40, this.x-10, this.y+50); //lift left foot
     } else {
       line(this.x-10, this.y+50, this.x-30, this.y+50); //rest left foot
@@ -147,7 +147,7 @@ class Tap {
 }
 
 function clrBcgrnd(rclr1, rclr2, bclr1, bclr2){ //this function is for more colorful backgrounds
-  background(random(rclr1,rclr2), 255, random(bclr1,bclr2)); //wanted bright greens, blues, and yellow, that is why parameters for the blue is not available
+  background(random(rclr1,rclr2), 255, random(bclr1,bclr2)); //wanted bright greens, blues, and yellow, that is why only red and green rgb parameters are passed
 }
 
 class Skip {
@@ -212,7 +212,7 @@ function clrLitng(){ //gives random colors to lightning bolts
   let g = random(190,255); //light colors against dark background to make them look brighter
   let b = random(205,255);
   strokeWeight(3); //thick strokes
-  stroke(r,g,b); //sets stroke color
+  stroke(r,g,b); //applies stroke color
 }
 
 class Jump {
