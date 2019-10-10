@@ -115,10 +115,10 @@ function draw() {
       skip5.display();
       break;
 			
-	case (s>=25000 && s<28000): //time between 25 and 28 sec
-		clrBcgrnd(240,255,0,200); //shades of yellow
-		jump1.display(); //displays jump object
-		break;
+	 case (s>=25000 && s<28000): //time between 25 and 28 sec
+		  clrBcgrnd(240,255,0,200); //shades of yellow
+		  jump1.display(); //displays jump object
+		  break;
   }
 }
 
